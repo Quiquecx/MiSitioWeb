@@ -1,21 +1,21 @@
 // Año dinámico en el footer
 document.getElementById('year').textContent = new Date().getFullYear();
 
-// Menú móvil
+// Menú móvil mejorado
 const burger = document.querySelector('.hamburger');
 const menu = document.getElementById('site-menu');
 
-function closeMenuOnNavigate(e){
-  if(e.target.tagName === 'A'){
-    menu.style.display = 'none';
-    burger.setAttribute('aria-expanded','false');
-  }
-}
-
+// Abre/cierra el menú alternando la clase 'active'
 burger?.addEventListener('click', () => {
   const expanded = burger.getAttribute('aria-expanded') === 'true';
   burger.setAttribute('aria-expanded', String(!expanded));
-  menu.style.display = expanded ? 'none' : 'flex';
+  menu.classList.toggle('active');
 });
 
-menu?.addEventListener('click', closeMenuOnNavigate);
+// Cierra el menú al hacer clic en cualquier enlace dentro del menú
+menu?.addEventListener('click', function(e){
+  if(e.target.tagName === 'A'){
+    menu.classList.remove('active');
+    burger.setAttribute('aria-expanded','false');
+  }
+});
