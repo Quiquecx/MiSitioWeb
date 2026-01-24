@@ -1,328 +1,197 @@
-/* 
-  ======================================================
-  VARIABLES GLOBALES
+/* ======================================================
+  VARIABLES GLOBALES (System Dark Mode)
   ======================================================
 */
 :root {
-  /* Colores principales */
-  --bg: #0b0b0c;                 /* Fondo oscuro elegante */
-  --card: #121214;               /* Fondo de tarjetas */
-  --text: #f5f7fa;               /* Color de texto principal */
-  --muted: #b8c0cc;              /* Texto secundario */
-  --line: #23242a;               /* Líneas y bordes */
-  --accent: #4f8cff;             /* Azul de acento */
-  --accent-700: #2f6fd8;         /* Azul acento más oscuro */
-  --success: #22c55e;
-  --danger: #ef4444;
-  --radius: 16px;                /* Radio general */
-  --container: 1100px;           /* Ancho máximo del contenido */
-
-  /* Colores bento y efectos especiales */
-  --hue: 27;
-  --sat: 69%;
-  --white: hsl(0, 0%, 100%);
-  --purple-primary: rgba(132, 0, 255, 1);      /* Púrpura principal */
-  --purple-glow: rgba(132, 0, 255, 0.2);       /* Glow púrpura */
-  --purple-border: rgba(132, 0, 255, 0.8);
-  --border-color: #392e4e;
-  --background-dark: #060010;
-  color-scheme: light dark;
+  --bg: #050505;                 /* Negro profundo */
+  --card: #0c0c0e;               /* Gris oscuro para elevación */
+  --text: #f5f7fa;               /* Blanco suave */
+  --muted: #88888c;              /* Gris para textos secundarios */
+  --line: #1d1d20;               /* Bordes sutiles */
+  --accent: #6366f1;             /* Indigo "Developer" */
+  --accent-glow: rgba(99, 102, 241, 0.15);
+  --radius: 14px;
+  --container: 1000px;
 }
 
 /* ======================================================
-   RESET Y UTILIDADES GENERALES
+   RESET Y UTILIDADES
 ====================================================== */
 *, *::before, *::after { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
   color: var(--text);
-  background: linear-gradient(180deg, #0b0b0c 0%, #0e0f12 100%);
+  background: var(--bg);
+  line-height: 1.6;
 }
-.container { max-width: var(--container); margin-inline: auto; padding: 0 20px; }
-.section { padding: 80px 0; }
-.section.alt { background: linear-gradient(180deg, #0e0f12 0%, #101115 100%); }
-.section-title { font-size: 32px; line-height: 1.1; margin: 0 0 28px; }
-.tiny { font-size: 13px; color: var(--muted); }
+.container { max-width: var(--container); margin-inline: auto; padding: 0 24px; }
+.section { padding: 100px 0; }
+.section.alt { background: #08080a; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.section-title { font-size: 32px; font-weight: 800; letter-spacing: -0.03em; margin-bottom: 40px; }
 
 /* ======================================================
-   HEADER Y NAVEGACIÓN
+   HEADER (Glassmorphism)
 ====================================================== */
 .site-header {
-  position: sticky; top: 0; z-index: 50;
-  backdrop-filter: saturate(1.2) blur(8px);
-  background: rgba(13,14,18,.5);
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: blur(12px);
+  background: rgba(5, 5, 5, 0.8);
   border-bottom: 1px solid var(--line);
 }
-.nav { display: flex; align-items: center; justify-content: space-between; height: 64px; }
-.brand { font-weight: 800; letter-spacing: .4px; text-decoration: none; color: var(--text); }
-.menu { display: flex; gap: 18px; align-items: center; }
-.menu a { color: var(--muted); text-decoration: none; }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 70px; }
+.brand { font-weight: 800; text-decoration: none; color: var(--text); font-size: 1.1rem; }
+.menu { display: flex; gap: 24px; align-items: center; }
+.menu a { color: var(--muted); text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
 .menu a:hover { color: var(--text); }
 
-/* Navegación móvil */
-.hamburger { display: none; gap: 6px; flex-direction: column; background: none; border: 0; }
-.hamburger span { width: 24px; height: 2px; background: var(--muted); display: block; border-radius: 2px; }
+/* Hamburguesa móvil */
+.hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: 0; cursor: pointer; }
+.hamburger span { width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
 
 /* ======================================================
-   HERO PRINCIPAL
+   HERO (Estilo Programador)
 ====================================================== */
-.hero { padding: 96px 0; }
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1fr minmax(250px, 1fr);
-  gap: 40px;
-  align-items: center;
+.hero { padding: 120px 0 80px; }
+.hero-grid { display: grid; grid-template-columns: 1.2fr 0.8fr; gap: 40px; align-items: center; }
+.code-badge {
+  font-family: 'Courier New', monospace;
+  color: var(--accent);
+  background: var(--accent-glow);
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  display: inline-block;
+  margin-bottom: 20px;
 }
-.hero h1 { font-size: 42px; line-height: 1.1; margin: 0 0 14px; }
-.hero p { color: var(--muted); margin: 0 0 20px; }
-.hero-actions { display: flex; gap: 12px; margin: 14px 0 18px; }
-.bullets { display: flex; gap: 16px; list-style: none; padding: 0; margin: 16px 0 0; }
-.bullets li { font-size: 14px; color: var(--muted); border: 1px solid var(--line); padding: 8px 10px; border-radius: 999px; }
+.hero h1 { font-size: 48px; line-height: 1.1; margin: 0 0 20px; letter-spacing: -0.04em; }
+.hero p { color: var(--muted); font-size: 1.1rem; margin-bottom: 30px; max-width: 480px; }
+.hero-actions { display: flex; gap: 12px; }
 
-/* Imagen del hero */
 .hero-media img {
-  width: 65%;
-  height: auto;               /* Mantiene proporción */
-  max-width: 500px;           /* Limita tamaño máximo */
+  width: 100%;
   border-radius: var(--radius);
   border: 1px solid var(--line);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35);
+  box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+}
+
+/* ======================================================
+   PORTAFOLIO: SIMAAPP (Corregido y escalado)
+====================================================== */
+.app-screenshot-gallery {
+  display: flex;
+  gap: 24px;
+  overflow-x: auto;
+  padding: 20px 0 40px;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Ocultar barra de scroll estética */
+.app-screenshot-gallery::-webkit-scrollbar { height: 5px; }
+.app-screenshot-gallery::-webkit-scrollbar-thumb { 
+  background: var(--line); 
+  border-radius: 10px; 
+}
+
+.screenshot {
+  /* AQUÍ CONTROLAS EL TAMAÑO */
+  flex: 0 0 260px; /* Cambia este valor a 200px si las quieres aún más pequeñas */
+  scroll-snap-align: start;
+  text-align: center;
+}
+
+.screenshot img {
+  width: 100%; /* Obliga a la imagen gigante a ajustarse al ancho de .screenshot */
+  height: auto;
+  border-radius: 20px;
+  filter: drop-shadow(0 15px 30px rgba(0,0,0,0.5));
+  transition: transform 0.3s ease;
   display: block;
 }
 
-/* ======================================================
-   CARDS DE SERVICIOS
-====================================================== */
-.cards { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-/* Para evitar conflictos, puedes renombrar esta clase si usas las bento-cards */
-.card,
-.service-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  padding: 20px;
-  transition: transform .15s ease, border-color .15s ease;
+.screenshot:hover img {
+  transform: translateY(-10px);
 }
-.card:hover,
-.service-card:hover { transform: translateY(-2px); border-color: var(--accent); }
-.card h3, .service-card h3 { margin: 0 0 8px; }
-.card p, .service-card p { margin: 0; color: var(--muted); }
+
+.screenshot small {
+  display: block;
+  margin-top: 15px;
+  color: var(--muted);
+  font-family: monospace;
+  font-size: 12px;
+}
+
+/* Ajuste para que en móviles no se vean gigantes */
+@media (max-width: 600px) {
+  .screenshot {
+    flex: 0 0 200px; 
+  }
+}
 
 /* ======================================================
-   SECCIÓN PORTAFOLIO
+   SERVICIOS (Cards)
 ====================================================== */
-.grid-portfolio { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; }
-.tile { display: block; position: relative; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); text-decoration: none; }
-.tile img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .25s ease; }
-.tile span {
-  position: absolute; left: 12px; bottom: 12px; background: rgba(0,0,0,.55);
-  padding: 6px 10px; border-radius: 999px; font-size: 14px; color: #fff;
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
+.card {
+  background: var(--card); border: 1px solid var(--line);
+  padding: 30px; border-radius: var(--radius); transition: 0.3s;
 }
-.tile:hover img { transform: scale(1.03); }
+.card:hover { border-color: var(--accent); transform: translateY(-4px); }
+.card h3 { font-size: 1.1rem; margin: 0 0 10px; }
+.card p { font-size: 0.9rem; color: var(--muted); margin: 0; }
 
 /* ======================================================
-   TARJETAS DE PRECIOS
+   PRECIOS Y FAQ
 ====================================================== */
-.pricing { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; }
+.pricing { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
 .price-card {
-  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 24px; display: flex; flex-direction: column; gap: 12px; position: relative;
+  background: var(--card); border: 1px solid var(--line);
+  padding: 30px; border-radius: var(--radius); text-align: center;
 }
-.price { font-size: 22px; font-weight: 800; }
-.price-card ul { margin: 0; padding-left: 18px; color: var(--muted); }
-.price-card .btn { margin-top: 8px; }
-.price-card.popular { border-color: var(--accent); }
-.badge {
-  position: absolute; top: 14px; right: 14px; background: var(--accent); color: #fff;
-  font-size: 12px; padding: 6px 8px; border-radius: 999px;
-}
+.price-card.popular { border-color: var(--accent); box-shadow: 0 0 30px var(--accent-glow); }
+.price { font-size: 32px; font-weight: 800; margin: 20px 0; }
 
-/* ======================================================
-   FAQ - PREGUNTAS FRECUENTES
-====================================================== */
 .faq-item {
-  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 16px; margin-bottom: 12px;
+  background: var(--card); border: 1px solid var(--line);
+  border-radius: var(--radius); padding: 16px; margin-bottom: 12px;
 }
-.faq-item summary { cursor: pointer; font-weight: 600; }
-.faq-item p { color: var(--muted); }
+.faq-item summary { cursor: pointer; font-weight: 600; outline: none; }
 
 /* ======================================================
-   CONTACTO
+   FORMULARIO Y CONTACTO
 ====================================================== */
-.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: start; }
-.contact-list { list-style: none; padding: 0; margin: 12px 0 0; color: var(--muted); }
-.contact-form {
-  background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
-  padding: 20px; display: grid; gap: 12px;
-}
-.contact-form label { display: grid; gap: 6px; font-size: 14px; }
+.contact { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; }
+.contact-form { display: grid; gap: 16px; }
 .contact-form input, .contact-form textarea {
-  background: #0a0b0e; border: 1px solid var(--line); border-radius: 12px; color: var(--text);
-  padding: 12px;
+  background: #000; border: 1px solid var(--line);
+  padding: 14px; border-radius: 10px; color: #fff; font-family: inherit;
 }
-.form-note { margin: 4px 0 0; color: var(--muted); font-size: 12px; }
-
-/* ======================================================
-   FOOTER
-====================================================== */
-.site-footer {
-  padding: 30px 0; border-top: 1px solid var(--line);
-  background: linear-gradient(180deg, #0f1116 0%, #0b0b0c 100%);
-}
-.footer-grid { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.contact-form input:focus { border-color: var(--accent); outline: none; }
 
 /* ======================================================
    BOTONES
 ====================================================== */
 .btn {
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-  padding: 10px 14px; border-radius: 12px; text-decoration: none; border: 1px solid transparent;
-  font-weight: 600; cursor: pointer; user-select: none;
-  transition: transform .05s ease, background .15s ease, border-color .15s ease, color .15s ease;
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 12px 24px; border-radius: 10px; text-decoration: none;
+  font-weight: 600; font-size: 0.9rem; transition: 0.2s;
 }
-.btn:active { transform: translateY(1px); }
-.btn-primary { background: var(--accent); color: #fff; border-color: var(--accent); }
-.btn-primary:hover { background: var(--accent-700); border-color: var(--accent-700); }
-.btn-outline { background: transparent; color: var(--text); border-color: var(--line); }
-.btn-outline:hover { border-color: var(--text); }
-.btn-ghost { background: transparent; color: var(--muted); border-color: transparent; }
-.btn-ghost:hover { color: var(--text); }
+.btn-primary { background: var(--accent); color: #fff; }
+.btn-primary:hover { opacity: 0.9; transform: translateY(-2px); }
+.btn-ghost { border: 1px solid var(--line); color: var(--muted); }
+.btn-ghost:hover { color: #fff; border-color: var(--text); }
 
 /* ======================================================
    RESPONSIVIDAD
 ====================================================== */
-@media (max-width: 1024px) {
-  .hero-grid { grid-template-columns: 1fr; gap: 24px; }
-  .cards { grid-template-columns: repeat(2,1fr); }
-  .grid-portfolio { grid-template-columns: repeat(2,1fr); }
-  .pricing { grid-template-columns: 1fr; }
-  .contact { grid-template-columns: 1fr; }
-}
-@media (max-width: 720px) {
-  .menu {
-    display: none; position: absolute; right: 20px; top: 66px;
-    flex-direction: column; background: var(--card); border: 1px solid var(--line);
-    border-radius: 14px; padding: 12px; width: calc(100% - 40px);
-  }
-  .menu a { padding: 8px 10px; border-radius: 8px; }
+@media (max-width: 900px) {
+  .hero-grid, .contact, .pricing { grid-template-columns: 1fr; }
+  .menu { display: none; }
   .hamburger { display: flex; }
-}
-
-/* ======================================================
-   BENTO GRID Y TARJETAS CON EFECTO GLOW
-====================================================== */
-.card-grid {
-  display: grid;
-  gap: 0.5em;
-  padding: 0.75em;
-  max-width: 54em;
-  font-size: clamp(1rem, 0.9rem + 0.5vw, 1.5rem);
-}
-.bento-card {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  aspect-ratio: 4/3;
-  min-height: 200px;
-  width: 100%;
-  max-width: 100%;
-  padding: 1.25em;
-  border-radius: 20px;
-  border: 1px solid var(--border-color);
-  background: var(--background-dark);
-  font-weight: 300;
-  overflow: hidden;
-  transition: all 0.3s ease;
-  /* Glow effect variables */
-  --glow-x: 50%;
-  --glow-y: 50%;
-  --glow-intensity: 0;
-  --glow-radius: 200px;
-}
-.bento-card:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-}
-/* Estructura interna de las bento cards */
-.card__header, .card__content {
-  display: flex;
-  position: relative;
-  color: var(--white);
-}
-.card__header { gap: 0.75em; justify-content: space-between; }
-.card__content { flex-direction: column; }
-.card__label { font-size: 16px; }
-.card__title { font-weight: 400; font-size: 16px; margin: 0 0 0.25em; }
-.card__description { font-size: 12px; line-height: 1.2; opacity: 0.9; }
-/* Texto truncado en bento cards */
-.card--text-autohide .card__title, .card--text-autohide .card__description {
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-.card--text-autohide .card__title { -webkit-line-clamp: 1; line-clamp: 1; }
-.card--text-autohide .card__description { -webkit-line-clamp: 2; line-clamp: 2; }
-
-/* Responsive para bento grid */
-@media (max-width: 599px) {
-  .card-grid { grid-template-columns: 1fr; width: 90%; margin: 0 auto; padding: 0.5em; }
-  .bento-card { width: 100%; min-height: 180px; }
-}
-@media (min-width: 600px) { .card-grid { grid-template-columns: repeat(2, 1fr); } }
-@media (min-width: 1024px) {
-  .card-grid { grid-template-columns: repeat(4, 1fr); }
-  /* Ejemplo de tarjetas destacadas */
-  .bento-card:nth-child(3) { grid-column: span 2; grid-row: span 2; }
-  .bento-card:nth-child(4) { grid-column: 1/span 2; grid-row: 2/span 2; }
-  .bento-card:nth-child(6) { grid-column: 4; grid-row: 3; }
-}
-
-/* ======================================================
-   EFECTOS ESPECIALES Y PARTICULAS
-====================================================== */
-.card--border-glow::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  padding: 6px;
-  background: radial-gradient(var(--glow-radius) circle at var(--glow-x) var(--glow-y),
-    rgba(132, 0, 255, calc(var(--glow-intensity) * 0.8)) 0%,
-    rgba(132, 0, 255, calc(var(--glow-intensity) * 0.4)) 30%,
-    transparent 60%);
-  border-radius: inherit;
-  pointer-events: none;
-  transition: opacity 0.3s ease;
-  z-index: 1;
-}
-.card--border-glow:hover::after { opacity: 1; }
-.card--border-glow:hover { box-shadow: 0 4px 20px rgba(46, 24, 78, 0.4), 0 0 30px var(--purple-glow); }
-
-.particle-container { position: relative; overflow: hidden; }
-.particle::before {
-  content: '';
-  position: absolute;
-  top: -2px; left: -2px; right: -2px; bottom: -2px;
-  background: rgba(132, 0, 255, 0.2);
-  border-radius: 50%;
-  z-index: -1;
-}
-.particle-container:hover { box-shadow: 0 4px 20px rgba(46, 24, 78, 0.2), 0 0 30px var(--purple-glow); }
-
-/* Spotlight global */
-.global-spotlight {
-  mix-blend-mode: screen;
-  will-change: transform, opacity;
-  z-index: 200 !important;
-  pointer-events: none;
-}
-
-/* Sección bento */
-.bento-section {
-  position: relative;
-  user-select: none;
+  .hero { text-align: center; padding: 60px 0; }
+  .hero h1 { font-size: 36px; }
+  .hero-actions { justify-content: center; }
+  .app-frame { flex: 0 0 180px; }
 }
